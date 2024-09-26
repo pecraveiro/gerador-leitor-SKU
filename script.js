@@ -94,7 +94,13 @@ function gerarSKU() {
   Object.keys(categorias).forEach((categoria) => {
     const select = document.getElementById(categoria);
     if (select.value) {
-      sku += categoria.charAt(0).toUpperCase() + select.value;
+      if (categoria === 'kit') {
+        // Para o kit, use dois dígitos se necessário
+        sku +=
+          categoria.charAt(0).toUpperCase() + select.value.padStart(2, '0');
+      } else {
+        sku += categoria.charAt(0).toUpperCase() + select.value;
+      }
     }
   });
 
@@ -146,7 +152,13 @@ function lerSKU() {
     const letra = categoria.charAt(0).toUpperCase();
     const index = skuInput.indexOf(letra);
     if (index !== -1 && index + 1 < skuInput.length) {
-      const valor = parseInt(skuInput[index + 1]);
+      let valor;
+      if (categoria === 'kit') {
+        // Para o kit, leia até dois dígitos
+        valor = parseInt(skuInput.substr(index + 1, 2));
+      } else {
+        valor = parseInt(skuInput[index + 1]);
+      }
       if (valor > 0 && valor <= opcoes.length) {
         const item = document.createElement('p');
         item.className = 'text-gray-700';
@@ -198,8 +210,14 @@ function compararSKUs(skuAntigo, skuNovo) {
     const indexNovo = skuNovo.indexOf(letraCategoria);
 
     if (indexAntigo !== -1 && indexNovo !== -1) {
-      const valorAntigo = parseInt(skuAntigo[indexAntigo + 1]);
-      const valorNovo = parseInt(skuNovo[indexNovo + 1]);
+      let valorAntigo, valorNovo;
+      if (categoria === 'kit') {
+        valorAntigo = parseInt(skuAntigo.substr(indexAntigo + 1, 2));
+        valorNovo = parseInt(skuNovo.substr(indexNovo + 1, 2));
+      } else {
+        valorAntigo = parseInt(skuAntigo[indexAntigo + 1]);
+        valorNovo = parseInt(skuNovo[indexNovo + 1]);
+      }
 
       if (valorAntigo !== valorNovo) {
         mudancas.push(
@@ -207,10 +225,16 @@ function compararSKUs(skuAntigo, skuNovo) {
         );
       }
     } else if (indexAntigo === -1 && indexNovo !== -1) {
-      const valorNovo = parseInt(skuNovo[indexNovo + 1]);
+      const valorNovo =
+        categoria === 'kit'
+          ? parseInt(skuNovo.substr(indexNovo + 1, 2))
+          : parseInt(skuNovo[indexNovo + 1]);
       mudancas.push(`${categoria}: Adicionado ${opcoes[valorNovo - 1]}`);
     } else if (indexAntigo !== -1 && indexNovo === -1) {
-      const valorAntigo = parseInt(skuAntigo[indexAntigo + 1]);
+      const valorAntigo =
+        categoria === 'kit'
+          ? parseInt(skuAntigo.substr(indexAntigo + 1, 2))
+          : parseInt(skuAntigo[indexAntigo + 1]);
       mudancas.push(`${categoria}: Removido ${opcoes[valorAntigo - 1]}`);
     }
   });
