@@ -77,6 +77,7 @@ function criarSelecoes() {
     label.textContent = categoria.charAt(0).toUpperCase() + categoria.slice(1);
 
     const wrapper = document.createElement('div');
+    wrapper.className = 'mb-4'; // Adicionado espaçamento entre os campos
     wrapper.appendChild(label);
     wrapper.appendChild(select);
     selecoesDiv.appendChild(wrapper);
@@ -95,8 +96,7 @@ function gerarSKU() {
     }
   });
 
-  document.getElementById('skuGerado').textContent =
-    sku || 'Selecione todas as opções';
+  document.getElementById('skuInput').value = sku || '';
 }
 
 // Função para ler o SKU
