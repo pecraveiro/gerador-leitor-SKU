@@ -96,18 +96,21 @@ function gerarSKU() {
     }
   });
 
-  document.getElementById('skuInput').value = sku || '';
+  const skuInput = document.getElementById('skuInput');
+  skuInput.textContent = sku || 'SKU gerado aparecerá aqui';
 }
 
 // Função para ler o SKU
 function lerSKU() {
-  const skuInput = document.getElementById('skuInput').value.toUpperCase();
+  const skuInput = document
+    .getElementById('skuInput')
+    .textContent.toUpperCase();
   const resultadoDiv = document.getElementById('resultadoLeitura');
   resultadoDiv.innerHTML = '';
 
-  if (skuInput.length === 0) {
+  if (skuInput === 'SKU GERADO APARECERÁ AQUI') {
     resultadoDiv.innerHTML =
-      '<p class="text-red-500">Por favor, insira um SKU.</p>';
+      '<p class="text-red-500">Por favor, gere um SKU primeiro.</p>';
     return;
   }
 
@@ -140,10 +143,10 @@ function lerSKU() {
 
 // Função para copiar o SKU para a área de transferência
 function copiarSKU() {
-  const skuGerado = document.getElementById('skuGerado');
-  const textoSKU = skuGerado.textContent;
+  const skuInput = document.getElementById('skuInput');
+  const textoSKU = skuInput.textContent;
 
-  if (textoSKU !== 'Selecione todas as opções') {
+  if (textoSKU !== 'SKU gerado aparecerá aqui') {
     navigator.clipboard
       .writeText(textoSKU)
       .then(() => {
@@ -164,5 +167,10 @@ document.addEventListener('DOMContentLoaded', () => {
   criarSelecoes();
   gerarSKU();
   document.getElementById('lerSKU').addEventListener('click', lerSKU);
-  document.getElementById('skuGerado').addEventListener('click', copiarSKU);
+  document.getElementById('skuInput').addEventListener('click', copiarSKU);
+  document.getElementById('skuInput').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      copiarSKU();
+    }
+  });
 });
