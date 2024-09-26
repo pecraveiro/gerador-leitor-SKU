@@ -7,7 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white p-8 rounded-lg shadow-md max-w-6xl w-full">
+    <div class="bg-white p-8 rounded-lg shadow-md max-w-6xl w-full relative">
+      <div
+        id="skuFeedback"
+        class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full mb-4 p-3 bg-black/10 rounded-md shadow-md hidden transition-opacity duration-300 ease-in-out">
+        <div class="arrow-down"></div>
+      </div>
       <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">
         Sistema de SKU
       </h1>
@@ -22,10 +27,15 @@
           </div>
         </div>
 
-        <div>
+        <div class="relative">
           <h2 class="text-xl font-semibold mb-4 text-gray-700">
             Leitor de SKU
           </h2>
+          <div
+            id="skuFeedback"
+            class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 p-3 bg-black/10 rounded-md shadow-md hidden transition-opacity duration-300 ease-in-out">
+            <div class="arrow-down"></div>
+          </div>
           <div
             id="skuInput"
             class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black mb-4 cursor-pointer bg-white"
