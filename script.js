@@ -36,7 +36,7 @@ const categorias = {
     '15'
   ],
   modelo: ['FÍSICO', 'AGRUPADO'],
-  recorrencia: ['NÃO', 'SIM'],
+  recorrência: ['NÃO', 'SIM'],
   nicho: [
     'EMAGRECIMENTO',
     'MEMÓRIA',
