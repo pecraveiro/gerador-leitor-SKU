@@ -2,7 +2,7 @@
 const categorias = {
   conta: ['SIX COMÉRCIO LTDA', 'SEVEN COMÉRCIO LTDA', 'PHARMA SIX'],
   produto: ['Lipotrin', 'Floraxil'],
-  tipo: ['LÍQUIDO', 'BLISTER', 'CÁPSULA', 'PÓ', 'GUMMY'],
+  tipo: ['XAROPE', 'GOTAS', 'BLISTER', 'CÁPSULA', 'PÓ', 'GUMMY'],
   quantidade: [
     '10ML',
     '20ML',
