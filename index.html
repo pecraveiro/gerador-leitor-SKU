@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de SKU Dinâmico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-lg shadow-md max-w-2xl w-full">
+      <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">
+        Sistema de SKU
+      </h1>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="text-xl font-semibold mb-4 text-gray-700">
+            Gerador de SKU
+          </h2>
+          <div id="selecoes" class="space-y-4">
+            <!-- As seleções serão inseridas aqui dinamicamente -->
+          </div>
+          <div class="mt-6">
+            <h3 class="text-lg font-semibold mb-2 text-gray-700">
+              SKU Gerado:
+            </h3>
+            <div
+              id="skuGerado"
+              class="bg-gray-200 p-3 rounded-md text-lg font-mono cursor-pointer hover:bg-gray-300 transition-colors duration-300"
+              title="Clique para copiar">
+              Selecione todas as opções
+            </div>
+            <p id="copyFeedback" class="text-sm text-green-600 mt-2 hidden">
+              SKU copiado para a área de transferência!
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-xl font-semibold mb-4 text-gray-700">
+            Leitor de SKU
+          </h2>
+          <input
+            type="text"
+            id="skuInput"
+            placeholder="Digite o SKU"
+            class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4" />
+          <button
+            id="lerSKU"
+            class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">
+            Ler SKU
+          </button>
+          <div id="resultadoLeitura" class="mt-4 space-y-2">
+            <!-- O resultado da leitura será inserido aqui -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
